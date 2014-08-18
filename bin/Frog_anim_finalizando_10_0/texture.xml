@@ -1,0 +1,8 @@
+<TextureAtlas name="Frog_anim_finalizando_10_0" imagePath="texture.png">
+  <SubTexture name="001_reduzidos_sizeOK/0001_antebraco_CROPED" x="63" y="73" width="57" height="21"/>
+  <SubTexture name="001_reduzidos_sizeOK/0001_biceps_CROPED" x="200" y="30" width="40" height="20"/>
+  <SubTexture name="001_reduzidos_sizeOK/0001_canela_CROPED" x="0" y="68" width="61" height="19"/>
+  <SubTexture name="001_reduzidos_sizeOK/0001_coxa_CROPED" x="200" y="0" width="54" height="28"/>
+  <SubTexture name="001_reduzidos_sizeOK/0001_corpo1_CROPED" x="103" y="0" width="95" height="71"/>
+  <SubTexture name="001_reduzidos_sizeOK/0001_jetski_CROPED" x="0" y="0" width="101" height="67"/>
+</TextureAtlas>
