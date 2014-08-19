@@ -120,7 +120,7 @@ package
 			addChild(_dbObject);
 			_dbObject.pivotX = _dbObject.width * .5;
 			_dbObject.pivotY = _dbObject.height * .5;
-			_dbObject.x = _properties.width + _dbObject.width;// (Starling.current.stage.stageWidth - Starling.current.stage.stageWidth * .35);
+			_dbObject.x = _properties.width + (Starling.current.stage.stageWidth * .75);// (Starling.current.stage.stageWidth - Starling.current.stage.stageWidth * .35);
 			_dbObject.y = Starling.current.stage.stageHeight * .5;
 		}
 		

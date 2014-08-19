@@ -21,8 +21,6 @@ package Contents
 	import flash.net.FileFilter;
 	import flash.events.Event;
 	
-	//import starling.events.Event;
-	
 	/**
 	 * Side bar with the informations from the loaded object.
 	 * Load button

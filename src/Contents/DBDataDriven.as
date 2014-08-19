@@ -4,7 +4,7 @@ package Contents
 	import starling.textures.Texture;
 	
 	/**
-	 * 
+	 * DragonBones data to storage.
 	 * @author Jack Dracon
 	 */
 	public final class DBDataDriven extends Sprite
@@ -13,26 +13,47 @@ package Contents
 		private static var _dataXML : XML;
 		private static var _skeletonXML : XML;
 		
+		/**
+		 * Load the texture object.
+		 * @param	_text
+		 */
 		public static function Load_Texture(_text : Texture) : void {
 			_texture = _text;
 		}
 		
+		/**
+		 * Load the data structure.
+		 * @param	_data
+		 */
 		public static function Load_Data(_data : XML) : void {
 			_dataXML = _data;
 		}
 		
+		/**
+		 * Load the skeleton object.
+		 * @param	_skl, XML object to target as skeleton
+		 */
 		public static function Load_Skeleton(_skl : XML) : void {
 			_skeletonXML = _skl;
 		}
 		
+		/**
+		 * Get the current textures element.
+		 */
 		public static function get Current_Texture() : Texture {
 			return _texture;
 		}
 		
+		/**
+		 * Get the current skeleton data(XML)
+		 */
 		public static function get Current_Skeleton() : XML {
 			return _skeletonXML;
 		}
 		
+		/**
+		 * Get the current data(XML) associated with texture.
+		 */
 		public static function get Current_Data() : XML {
 			return _dataXML;
 		}
