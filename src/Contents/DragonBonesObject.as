@@ -26,6 +26,7 @@ package Contents
 		
 		private var armatureCollection : Vector.<String>;
 		private var animationList:Vector.<String>;
+		
 		public function DragonBonesObject(_atlas : StarlingTextureAtlas, _skl : XML) : void
 		{			
 			factory = new StarlingFactory();
@@ -34,7 +35,6 @@ package Contents
 			factory.addSkeletonData(_parsedSkeletonData);
 			factory.addTextureAtlas(_atlas);
 			armature = factory.buildArmature(armatureCollection[0]);
-			//trace(armature + " $$ " + armatureCollection[0]);
 			if (armature) 
 			{
 				trace("Load Armature");
@@ -62,6 +62,14 @@ package Contents
 		 */
 		public function Play(_str : String): void {
 			armature.animation.gotoAndPlay(_str);
+		}
+		
+		public function get AnimationCollection():Vector.<String> {
+			return animationList;
+		}
+		
+		public function get ArmatureList():Vector.<String> {
+			return armatureCollection;
 		}
 		
 		private function Update(e:Event):void 

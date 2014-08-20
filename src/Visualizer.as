@@ -29,8 +29,8 @@ package
 		
 		private var _arrFields : Array = [];
 		
-		private var infoFieldInitPositionX : Number = 0;
-		private var infoFieldInitPositionY : Number = 0;
+		private var infoFieldNextPositionX : Number = 0;
+		private var infoFieldNextPositionY : Number = 0;
 		
 		public function Visualizer() : void
 		{
@@ -81,32 +81,32 @@ package
 			{
 				var _atlas : StarlingTextureAtlas = new StarlingTextureAtlas(DBDataDriven.Current_Texture, DBDataDriven.Current_Data);
 				Create_DragonBones(_atlas, DBDataDriven.Current_Skeleton);
+				UpdateAnimations();
 			} else {
 				StatusInfo("LOAD ERROR");
 			}
 		}
 		
-		public function DragonBonesInfo(_str : String) : void {
-			var _info : InfoField = new InfoField(_str);
-			addChild(_info);
-			_arrFields.push(_info);
-			if (_arrFields.length > 1) 
-			{
-				for (var _i:int = 0; _i < _arrFields.length; _i++) {
-					var _value : InfoField = _arrFields[_i];
-					if (_value.x == infoFieldInitPositionX) {
-						continue;
-					}
-					else 
-					{
-						_value.x = (_arrFields[(_i - 1)] as InfoField).x + (_arrFields[(_i - 1)] as InfoField).width;
-						_value.y = infoFieldInitPositionY;
+		public function UpdateAnimations() : void {
+			if (_dbObject) {
+				if (_dbObject.AnimationCollection.length > 0) {
+					for each(var _str:String in _dbObject.AnimationCollection) {
+						DragonBonesInfo(_str);
 					}
 				}
-			}else {
-				_info.x = infoFieldInitPositionX;
-				_info.y = infoFieldInitPositionY;
 			}
+		}
+		
+		public function DragonBonesInfo(_str : String) : void {
+			var _info : InfoField = new InfoField(_str, _dbObject.Play);
+			addChild(_info);
+			if (infoFieldNextPositionY >= Starling.current.stage.stageHeight) {
+				infoFieldNextPositionX = _info.width;
+				infoFieldNextPositionY = 0;
+			}
+			_info.x = _properties.width + infoFieldNextPositionX;
+			_info.y = infoFieldNextPositionY;
+			infoFieldNextPositionY += (_info.height + 10);
 		}
 		
 		/**
@@ -120,8 +120,8 @@ package
 			addChild(_dbObject);
 			_dbObject.pivotX = _dbObject.width * .5;
 			_dbObject.pivotY = _dbObject.height * .5;
-			_dbObject.x = _properties.width + (Starling.current.stage.stageWidth * .75);// (Starling.current.stage.stageWidth - Starling.current.stage.stageWidth * .35);
-			_dbObject.y = Starling.current.stage.stageHeight * .5;
+			_dbObject.x = _properties.width + (Starling.current.stage.stageWidth * .65);// (Starling.current.stage.stageWidth - Starling.current.stage.stageWidth * .35);
+			_dbObject.y = Starling.current.stage.stageHeight * .65;
 		}
 		
 		/**

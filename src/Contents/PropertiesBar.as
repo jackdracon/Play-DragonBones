@@ -107,7 +107,7 @@ package Contents
 			_descriptionData.x = 10;
 			_descriptionData.y = loadDataButton.y - 10;
 			//-----------------------------------------------------------------------------------------------------------
-			//Debug value
+			/*//Debug value
 			debugModeCheckBox = new CheckButton(DebugDraw);
 			addChild(debugModeCheckBox);
 			debugModeCheckBox.x = 200;
@@ -141,7 +141,7 @@ package Contents
 			var _stopButton : ControllerButton = new ControllerButton(Library.Get_Atlas().getTexture("stop_clickOff.png"), Library.Get_Atlas().getTexture("stop_clickOn.png"), null);
 			addChild(_stopButton);
 			_stopButton.x = (_stopButton.width);
-			_stopButton.y = (Starling.current.stage.stageHeight - (_stopButton.height + 15));
+			_stopButton.y = (Starling.current.stage.stageHeight - (_stopButton.height + 15));*/
 		}
 		
 		public function PlayAnimation() : void {
