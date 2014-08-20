@@ -14,8 +14,9 @@ What Play-DragonBones is using?
 Starling(http://gamua.com/starling/) with as3(actionScript3.0).
 
 ####Warning####
-Works with DragonBones framework up than 2.2 (or latest version)
+Works with DragonBones framework up than 2.2 (or latest version).
+
 Some info links:
-DragonBones Help page(http://dragonbones.effecthub.com/help.html)
-DataFormat informations(http://dragonbones.effecthub.com/doc/DBSkeletonDataFormatSpec_V2.4_en.xml)
-Getting started with DragonBones(http://dragonbones.effecthub.com/DBGettingStarted_V2.0_en.html)
+- DragonBones Help page(http://dragonbones.effecthub.com/help.html).
+- DataFormat informations(http://dragonbones.effecthub.com/doc/DBSkeletonDataFormatSpec_V2.4_en.xml).
+- Getting started with DragonBones(http://dragonbones.effecthub.com/DBGettingStarted_V2.0_en.html).
