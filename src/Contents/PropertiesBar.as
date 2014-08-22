@@ -4,6 +4,7 @@ package Contents
 	import Components.ControllerButton;
 	import Components.DefaultButton;
 	import Components.InfoField;
+	import Components.ResetButton;
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import starling.display.Image;
@@ -53,6 +54,8 @@ package Contents
 		//Button Controllers
 		private var playButton:DefaultButton;
 		private var stopButton:DefaultButton;
+		private var resetButton:ResetButton;
+		
 		
 		//File's reference
 		private var file:FileReference;
@@ -102,12 +105,19 @@ package Contents
 			loadDataButton.name = "load_Data";
 			loadDataButton.x = loadTextureButton.x;
 			loadDataButton.y = (loadSkeletonButton.y + (loadDataButton.height * 1.2));
+			
 			var _descriptionData:TextField = new TextField(150, 50, "Load Data: ", "Arial Black", 16, 0x00);
 			addChild(_descriptionData);
 			_descriptionData.x = 10;
 			_descriptionData.y = loadDataButton.y - 10;
 			//-----------------------------------------------------------------------------------------------------------
-			/*//Debug value
+			//Reset Button
+			resetButton = new ResetButton(Reset);
+			addChild(resetButton);
+			resetButton.x = resetButton.width;
+			resetButton.y = (loadDataButton.y + (resetButton.height * 3));
+			
+			//Debug value
 			debugModeCheckBox = new CheckButton(DebugDraw);
 			addChild(debugModeCheckBox);
 			debugModeCheckBox.x = 200;
@@ -120,7 +130,8 @@ package Contents
 			_descriptionDebugMode.x = 10;
 			_descriptionDebugMode.y = debugModeCheckBox.y - 10;
 			//-----------------------------------------------------------------------------------------------------------
-			//Loop value
+			
+			/*//Loop value
 			loopingCheckBox = new CheckButton(PlayInLoop);
 			addChild(loopingCheckBox);
 			loopingCheckBox.x = 200;
@@ -144,14 +155,6 @@ package Contents
 			_stopButton.y = (Starling.current.stage.stageHeight - (_stopButton.height + 15));*/
 		}
 		
-		public function PlayAnimation() : void {
-			
-		}
-		
-		public function StopAnimation():void {
-			
-		}
-		
 		public function DebugDraw(_active : Boolean = false):void
 		{
 			if (_active)
@@ -165,11 +168,16 @@ package Contents
 			}
 		}
 		
-		public function PlayInLoop(_active : Boolean = false):void
-		{
-			onLoop = _active;
-		}
+		//public function PlayInLoop(_active : Boolean = false):void
+		//{
+			//onLoop = _active;
+		//}
 		
+		/**
+		 * Show the Dialog box
+		 * @param	_desc, description for the type of file.
+		 * @param	_ext, extension to be searched.
+		 */
 		public function Dialog(_desc:String, _ext:String):void
 		{
 			file = new FileReference();
@@ -179,11 +187,19 @@ package Contents
 			file.addEventListener(Event.COMPLETE, ReadFile);
 		}
 		
+		/**
+		 * Load selected files
+		 * @param	e
+		 */
 		private function SelectFile(e:Event):void
 		{
 			file.load();
 		}
 		
+		/**
+		 * Import files.
+		 * @param	e
+		 */
 		private function ReadFile(e:Event):void
 		{
 			file.removeEventListener(Event.COMPLETE, ReadFile);
@@ -224,6 +240,10 @@ package Contents
 			}
 		}
 		
+		/**
+		 * Handler for complete load of files.
+		 * @param	e
+		 */
 		private function CompleteLoad(e:Event):void
 		{			
 			var _bmp:Bitmap = fileLoader.content as Bitmap;
@@ -239,6 +259,16 @@ package Contents
 			{
 				activeButtonName = "";
 				(parent as Visualizer).Load_DragonBones();
+			}
+		}
+		
+		/**
+		 * Reset Objects to null.
+		 */
+		public function Reset() : void {
+			if (this.parent != null) 
+			{
+				(parent as Visualizer).Delete_DragonBones();
 			}
 		}
 		

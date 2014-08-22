@@ -1,5 +1,6 @@
 package  
 {
+	import adobe.utils.CustomActions;
 	import Components.InfoField;
 	import Contents.DragonBonesObject;
 	import Contents.PropertiesBar;
@@ -31,6 +32,8 @@ package
 		
 		private var infoFieldNextPositionX : Number = 0;
 		private var infoFieldNextPositionY : Number = 0;
+		
+		private var vecInfoFields:Vector.<InfoField>;
 		
 		public function Visualizer() : void
 		{
@@ -89,6 +92,7 @@ package
 		
 		public function UpdateAnimations() : void {
 			if (_dbObject) {
+				vecInfoFields = new Vector.<InfoField>();
 				if (_dbObject.AnimationCollection.length > 0) {
 					for each(var _str:String in _dbObject.AnimationCollection) {
 						DragonBonesInfo(_str);
@@ -107,6 +111,7 @@ package
 			_info.x = _properties.width + infoFieldNextPositionX;
 			_info.y = infoFieldNextPositionY;
 			infoFieldNextPositionY += (_info.height + 10);
+			vecInfoFields.push(_info);
 		}
 		
 		/**
@@ -124,6 +129,20 @@ package
 			_dbObject.y = Starling.current.stage.stageHeight * .65;
 		}
 		
+		/**
+		* Delete object DragonBones from the space/view.
+		*/
+		public function Delete_DragonBones():void {
+			if (_dbObject) {
+				removeChild(_dbObject);
+				_dbObject = null;
+				DBDataDriven.Clear_Asset();
+				infoFieldNextPositionX = infoFieldNextPositionY = 0;
+				while (vecInfoFields.length > 0) {
+					removeChild(vecInfoFields.shift());
+				}
+			}
+		}
 		/**
 		* @return if the object still already exists.
 		*/
