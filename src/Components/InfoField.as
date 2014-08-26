@@ -26,7 +26,7 @@ package Components
 			_quad = new Quad(100, 50, 0x00);
 			addChild(_quad);
 			_quad.alpha = .5;
-			var _field : TextField = new TextField(100, 50, _str, "Arial", 12, 0xff);
+			var _field : TextField = new TextField(100, 50, _str, "Arial", 12, 0xffffff);
 			addChild(_field);
 			this.width = _quad.width;
 			this.height = _quad.height;

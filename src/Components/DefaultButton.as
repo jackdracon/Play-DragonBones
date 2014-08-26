@@ -18,7 +18,7 @@ package Components
 		private var _extensions : String;
 		public function DefaultButton(_func : Function, _desc:String, _ext:String)
 		{
-			_btn = new Button(Library.Get_Atlas().getTexture("load_clickOff.png"), "", Library.Get_Atlas().getTexture("load_clickOn.png"));
+			_btn = new Button(Library.Get_Atlas().getTexture("load_clickOff.png"), "Load", Library.Get_Atlas().getTexture("load_clickOn.png"));
 			addChild(_btn);
 			_btn.addEventListener(Event.TRIGGERED, Trigger);
 			_description = _desc;

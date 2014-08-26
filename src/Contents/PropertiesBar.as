@@ -3,6 +3,7 @@ package Contents
 	import Components.CheckButton;
 	import Components.ControllerButton;
 	import Components.DefaultButton;
+	import Components.HelpButton;
 	import Components.InfoField;
 	import Components.ResetButton;
 	import flash.display.Bitmap;
@@ -55,7 +56,7 @@ package Contents
 		private var playButton:DefaultButton;
 		private var stopButton:DefaultButton;
 		private var resetButton:ResetButton;
-		
+		private var helpButton:HelpButton;
 		
 		//File's reference
 		private var file:FileReference;
@@ -130,6 +131,10 @@ package Contents
 			_descriptionDebugMode.x = 10;
 			_descriptionDebugMode.y = debugModeCheckBox.y - 10;
 			//-----------------------------------------------------------------------------------------------------------
+			//helpButton = new HelpButton(Help);
+			//addChild(helpButton);
+			//helpButton.x = helpButton.width * 4.5;
+			//helpButton.y =  resetButton.y + (helpButton.height * 4);
 			
 			/*//Loop value
 			loopingCheckBox = new CheckButton(PlayInLoop);
@@ -268,8 +273,16 @@ package Contents
 		public function Reset() : void {
 			if (this.parent != null) 
 			{
-				(parent as Visualizer).Delete_DragonBones();
+				//(parent as Visualizer).Delete_DragonBones();
+				(parent as Visualizer).ConfirmDialogPopUp();
 			}
+		}
+		
+		/**
+		 * Add a help popup window with infos about it.
+		 */
+		public function Help() : void {
+			
 		}
 		
 		/**

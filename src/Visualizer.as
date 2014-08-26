@@ -1,6 +1,8 @@
 package  
 {
 	import adobe.utils.CustomActions;
+	import Components.ConfirmDialog;
+	import Components.HelpPopUp;
 	import Components.InfoField;
 	import Contents.DragonBonesObject;
 	import Contents.PropertiesBar;
@@ -34,6 +36,9 @@ package
 		private var infoFieldNextPositionY : Number = 0;
 		
 		private var vecInfoFields:Vector.<InfoField>;
+		
+		private var _helpPopUp:HelpPopUp;
+		private var _dialogYesNo:ConfirmDialog;
 		
 		public function Visualizer() : void
 		{
@@ -130,18 +135,35 @@ package
 		}
 		
 		/**
+		 * Create a Popup for the Yes or No dialog box.
+		 * 
+		 */
+		public function ConfirmDialogPopUp() : void 
+		{
+			_dialogYesNo = new ConfirmDialog(200, 150, Delete_DragonBones);
+			addChild(_dialogYesNo);
+			_dialogYesNo.pivotX = _dialogYesNo.width * .5;
+			_dialogYesNo.pivotY = _dialogYesNo.height * .5;
+			_dialogYesNo.x = Starling.current.stage.stageWidth * .5;
+			_dialogYesNo.y = Starling.current.stage.stageHeight * .5;
+		}
+		
+		/**
 		* Delete object DragonBones from the space/view.
 		*/
-		public function Delete_DragonBones():void {
-			if (_dbObject) {
-				removeChild(_dbObject);
-				_dbObject = null;
-				DBDataDriven.Clear_Asset();
-				infoFieldNextPositionX = infoFieldNextPositionY = 0;
-				while (vecInfoFields.length > 0) {
-					removeChild(vecInfoFields.shift());
+		public function Delete_DragonBones(_delete : Boolean) : void {
+			if (!_delete) {
+				if (_dbObject) {
+					removeChild(_dbObject);
+					_dbObject = null;
+					DBDataDriven.Clear_Asset();
+					infoFieldNextPositionX = infoFieldNextPositionY = 0;
+					while (vecInfoFields.length > 0) {
+						removeChild(vecInfoFields.shift());
+					}
 				}
 			}
+			removeChild(_dialogYesNo);
 		}
 		/**
 		* @return if the object still already exists.

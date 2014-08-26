@@ -19,7 +19,7 @@ package Components
 			_func = _f;
 		}
 		
-		private function HandlerTrigger(e:Event):void 
+		private function HandlerTrigger(e:Event) : void 
 		{
 			_func();
 		}

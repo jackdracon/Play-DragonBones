@@ -6,14 +6,16 @@
 	-->
 	<SubTexture name="check_clickOff.png"	x="57"	y="156"	width="55"	height="54" frameX="-0" frameY="-0" frameWidth="56" frameHeight="54"/>
 	<SubTexture name="check_clickOn.png"	x="0"	y="156"	width="56"	height="54" frameX="-0" frameY="-0" frameWidth="56" frameHeight="54"/>
-	<SubTexture name="forward_clickOff.png"	x="88"	y="0"	width="37"	height="46" frameX="-0" frameY="-0" frameWidth="37" frameHeight="46"/>
-	<SubTexture name="forward_clickOn.png"	x="88"	y="47"	width="37"	height="46" frameX="-0" frameY="-0" frameWidth="37" frameHeight="46"/>
-	<SubTexture name="load_clickOff.png"	x="0"	y="0"	width="87"	height="38" frameX="-0" frameY="-0" frameWidth="87" frameHeight="38"/>
-	<SubTexture name="load_clickOn.png"	x="0"	y="117"	width="87"	height="38" frameX="-0" frameY="-0" frameWidth="87" frameHeight="38"/>
-	<SubTexture name="play_clickOff.png"	x="88"	y="94"	width="25"	height="45" frameX="-0" frameY="-0" frameWidth="25" frameHeight="45"/>
-	<SubTexture name="play_clickOn.png"	x="113"	y="140"	width="25"	height="45" frameX="-0" frameY="-0" frameWidth="25" frameHeight="45"/>
-	<SubTexture name="reset_clickOff.png"	x="0"	y="78"	width="87"	height="38" frameX="-0" frameY="-0" frameWidth="87" frameHeight="38"/>
-	<SubTexture name="reset_clickOn.png"	x="0"	y="39"	width="87"	height="38" frameX="-0" frameY="-0" frameWidth="87" frameHeight="38"/>
-	<SubTexture name="stop_clickOff.png"	x="41"	y="211"	width="40"	height="40" frameX="-1" frameY="-0" frameWidth="41" frameHeight="40"/>
-	<SubTexture name="stop_clickOn.png"	x="0"	y="211"	width="40"	height="40" frameX="-0" frameY="-0" frameWidth="41" frameHeight="40"/>
+	<SubTexture name="forward_clickOff.png"	x="113"	y="143"	width="37"	height="46" frameX="-0" frameY="-0" frameWidth="37" frameHeight="46"/>
+	<SubTexture name="forward_clickOn.png"	x="88"	y="96"	width="37"	height="46" frameX="-0" frameY="-0" frameWidth="37" frameHeight="46"/>
+	<SubTexture name="help_clickOff.png"	x="88"	y="48"	width="47"	height="47" frameX="-0" frameY="-0" frameWidth="47" frameHeight="47"/>
+	<SubTexture name="help_clickOn.png"	x="88"	y="0"	width="47"	height="47" frameX="-0" frameY="-0" frameWidth="47" frameHeight="47"/>
+	<SubTexture name="load_clickOff.png"	x="0"	y="39"	width="87"	height="38" frameX="-0" frameY="-0" frameWidth="87" frameHeight="38"/>
+	<SubTexture name="load_clickOn.png"	x="0"	y="0"	width="87"	height="38" frameX="-0" frameY="-0" frameWidth="87" frameHeight="38"/>
+	<SubTexture name="play_clickOff.png"	x="126"	y="96"	width="25"	height="45" frameX="-0" frameY="-0" frameWidth="25" frameHeight="45"/>
+	<SubTexture name="play_clickOn.png"	x="113"	y="190"	width="25"	height="45" frameX="-0" frameY="-0" frameWidth="25" frameHeight="45"/>
+	<SubTexture name="reset_clickOff.png"	x="0"	y="117"	width="87"	height="38" frameX="-0" frameY="-0" frameWidth="87" frameHeight="38"/>
+	<SubTexture name="reset_clickOn.png"	x="0"	y="78"	width="87"	height="38" frameX="-0" frameY="-0" frameWidth="87" frameHeight="38"/>
+	<SubTexture name="stop_clickOff.png"	x="0"	y="211"	width="40"	height="40" frameX="-1" frameY="-0" frameWidth="41" frameHeight="40"/>
+	<SubTexture name="stop_clickOn.png"	x="41"	y="211"	width="40"	height="40" frameX="-0" frameY="-0" frameWidth="41" frameHeight="40"/>
 </TextureAtlas>

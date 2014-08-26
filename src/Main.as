@@ -11,7 +11,7 @@ package
 	public class Main extends Sprite 
 	{
 		private var _starling : Starling;
-		private var version : String = "0.01";
+		private var version : String = "0.22";
 		public function Main() : void 
 		{
 			if (stage) {	init();	}
@@ -21,7 +21,7 @@ package
 		public function init(e : Event = null) : void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			stage.nativeWindow.title = "DragonBones_View #" + version;
+			stage.nativeWindow.title = "Play-DragonBones #v" + version;
 			_starling = new Starling(Visualizer, stage);
 			_starling.antiAliasing = 1;
 			_starling.start();
