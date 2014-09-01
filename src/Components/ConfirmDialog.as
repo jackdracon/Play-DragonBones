@@ -6,6 +6,7 @@ package Components
 	import starling.text.TextField;
 	import starling.events.Event;
 	import starling.display.Quad;
+	import starling.core.Starling;
 	
 	/**
 	 * Confirm PopUp window
@@ -15,9 +16,9 @@ package Components
 	{
 		private var _f : Function;
 		private var _popUp : Quad;
+		
 		public function ConfirmDialog(_w:Number, _h:Number, _func : Function) : void 
-		{
-			
+		{			
 			_popUp = new Quad(_w, _h, 0x9999FF);
 			addChild(_popUp);
 			this.width = _popUp.width;
@@ -44,7 +45,7 @@ package Components
 		private function HandlerConfirm(e:Event):void 
 		{
 			var _name : String = Button(e.currentTarget).name;
-			if (_name == "Yes") {
+			if (_name == "yes") {
 				_f(true);
 			}else {
 				_f(false);

@@ -6,6 +6,7 @@ package Contents
 	import dragonBones.Armature;
 	import dragonBones.objects.XMLDataParser;
 	import dragonBones.animation.WorldClock;
+	import starling.events.EnterFrameEvent;
 	import starling.events.Event;
 	
 	import starling.textures.Texture;
@@ -26,7 +27,13 @@ package Contents
 		
 		private var armatureCollection : Vector.<String>;
 		private var animationList:Vector.<String>;
+		private var currentAnimationName : String;
 		
+		/**
+		 * Constructor for the DragonBones object.
+		 * @param	_atlas, texture to generate the object.
+		 * @param	_skl, Skeleton data.
+		 */
 		public function DragonBonesObject(_atlas : StarlingTextureAtlas, _skl : XML) : void
 		{			
 			factory = new StarlingFactory();
@@ -61,20 +68,30 @@ package Contents
 		 * @param	_str, the name of animation to play.
 		 */
 		public function Play(_str : String): void {
-			armature.animation.gotoAndPlay(_str);
+			currentAnimationName = _str;
+			armature.animation.gotoAndPlay(currentAnimationName);
 		}
 		
-		public function get AnimationCollection():Vector.<String> {
-			return animationList;
-		}
+		public function get CurrentAnimation():String { return currentAnimationName;}
 		
-		public function get ArmatureList():Vector.<String> {
-			return armatureCollection;
-		}
+		public function get AnimationCollection():Vector.<String> {	return animationList;	}
 		
+		public function get ArmatureList():Vector.<String> { return armatureCollection;	}
+		
+		/**
+		 * Update Handler to this object.
+		 * @param	e
+		 */
 		private function Update(e:Event):void 
 		{
 			WorldClock.clock.advanceTime( -1);
+		}
+		
+		/**
+		* Remove the current listener over this object.
+		*/
+		public function RemoveEventListener():void {
+			removeEventListener(EnterFrameEvent.ENTER_FRAME, Update);
 		}
 	}
 }

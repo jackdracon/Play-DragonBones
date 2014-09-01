@@ -40,6 +40,8 @@ package
 		private var _helpPopUp:HelpPopUp;
 		private var _dialogYesNo:ConfirmDialog;
 		
+		private var _blackQuad : Quad;
+		
 		public function Visualizer() : void
 		{
 			_properties = new PropertiesBar();
@@ -95,6 +97,9 @@ package
 			}
 		}
 		
+		/**
+		 * Update the object animations list
+		 */
 		public function UpdateAnimations() : void {
 			if (_dbObject) {
 				vecInfoFields = new Vector.<InfoField>();
@@ -106,6 +111,19 @@ package
 			}
 		}
 		
+		public function BlackWindow() : void {
+			_blackQuad = new Quad(Starling.current.stage.stageWidth, Starling.current.stage.stageHeight, 0x000000);
+			addChild(_blackQuad);
+			_blackQuad.alpha = 0.75;
+			_blackQuad.x = 0;
+			_blackQuad.y = 0;
+			
+		}
+		
+		/**
+		 * Create the InfoFields.
+		 * @param	_str, text to display on InfoField.
+		 */
 		public function DragonBonesInfo(_str : String) : void {
 			var _info : InfoField = new InfoField(_str, _dbObject.Play);
 			addChild(_info);
@@ -140,6 +158,8 @@ package
 		 */
 		public function ConfirmDialogPopUp() : void 
 		{
+			if(_dbObject) {_dbObject.Stop();}
+			BlackWindow();
 			_dialogYesNo = new ConfirmDialog(200, 150, Delete_DragonBones);
 			addChild(_dialogYesNo);
 			_dialogYesNo.pivotX = _dialogYesNo.width * .5;
@@ -152,7 +172,7 @@ package
 		* Delete object DragonBones from the space/view.
 		*/
 		public function Delete_DragonBones(_delete : Boolean) : void {
-			if (!_delete) {
+			if (_delete) {
 				if (_dbObject) {
 					removeChild(_dbObject);
 					_dbObject = null;
@@ -162,7 +182,11 @@ package
 						removeChild(vecInfoFields.shift());
 					}
 				}
+			}else 
+			{
+				if(_dbObject) _dbObject.Play(_dbObject.CurrentAnimation);
 			}
+			removeChild(_blackQuad);
 			removeChild(_dialogYesNo);
 		}
 		/**
