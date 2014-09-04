@@ -21,7 +21,7 @@ package
 		public function init(e : Event = null) : void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			stage.nativeWindow.title = "Play-DragonBones #v" + version;
+			stage.nativeWindow.title = "Play-DragonBones";
 			_starling = new Starling(Visualizer, stage);
 			_starling.antiAliasing = 1;
 			_starling.start();

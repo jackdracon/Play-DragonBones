@@ -58,6 +58,9 @@ package Contents
 		private var resetButton:ResetButton;
 		private var helpButton:HelpButton;
 		
+		private var inZoomButton:DefaultButton;
+		private var outZoomButton:DefaultButton;
+		
 		//File's reference
 		private var file:FileReference;
 		private var fileLoader:Loader;
@@ -116,7 +119,8 @@ package Contents
 			resetButton = new ResetButton(Reset);
 			addChild(resetButton);
 			resetButton.x = resetButton.width;
-			resetButton.y = (loadDataButton.y + (resetButton.height * 3));
+			resetButton.y = (loadDataButton.y + (resetButton.height * 6));
+			//-----------------------------------------------------------------------------------------------------------
 			
 			//Debug value
 			debugModeCheckBox = new CheckButton(DebugDraw);
@@ -131,10 +135,23 @@ package Contents
 			_descriptionDebugMode.x = 10;
 			_descriptionDebugMode.y = debugModeCheckBox.y - 10;
 			//-----------------------------------------------------------------------------------------------------------
-			//helpButton = new HelpButton(Help);
-			//addChild(helpButton);
-			//helpButton.x = helpButton.width * 4.5;
-			//helpButton.y =  resetButton.y + (helpButton.height * 4);
+			//ZOOM ------------------------------------------------------------------------------------------------------
+			inZoomButton = new DefaultButton(Zoom, "", "", "Zoom in",false);
+			addChild(inZoomButton);
+			inZoomButton.name = "Zoom_In";
+			inZoomButton.x = (inZoomButton.width * .4);
+			inZoomButton.y = debugModeCheckBox.y + inZoomButton.height;
+			
+			outZoomButton = new DefaultButton(Zoom, "", "", "Zoom out", false);
+			addChild(outZoomButton);
+			outZoomButton.name = "Zoom_Out";
+			outZoomButton.x = (outZoomButton.width * 1.6);
+			outZoomButton.y = debugModeCheckBox.y + outZoomButton.height;
+			//-----------------------------------------------------------------------------------------------------------
+			helpButton = new HelpButton(Help);
+			addChild(helpButton);
+			helpButton.x = helpButton.width * 4.5;
+			helpButton.y =  outZoomButton.y + (helpButton.height * 4.25);
 			
 			/*//Loop value
 			loopingCheckBox = new CheckButton(PlayInLoop);
@@ -273,8 +290,15 @@ package Contents
 		public function Reset() : void {
 			if (this.parent != null) 
 			{
-				//(parent as Visualizer).Delete_DragonBones();
 				(parent as Visualizer).ConfirmDialogPopUp();
+			}
+		}
+		
+		public function Zoom(_in:Boolean): void 
+		{
+			if (this.parent != null) 
+			{
+				(parent as Visualizer).Zoom(_in);
 			}
 		}
 		
@@ -282,7 +306,10 @@ package Contents
 		 * Add a help popup window with infos about it.
 		 */
 		public function Help() : void {
-			
+			if (this.parent != null) 
+			{
+				(parent as Visualizer).HelpDialogPopUp();
+			}
 		}
 		
 		/**

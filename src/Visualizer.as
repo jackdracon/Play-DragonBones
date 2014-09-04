@@ -7,7 +7,12 @@ package
 	import Contents.DragonBonesObject;
 	import Contents.PropertiesBar;
 	import Contents.DBDataDriven;
+	
 	import dragonBones.textures.StarlingTextureAtlas;
+	
+	import starling.events.Touch;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	
 	import starling.display.Sprite;
 	import starling.core.Starling;
@@ -42,10 +47,14 @@ package
 		
 		private var _blackQuad : Quad;
 		
+		/**
+		 * Constructor
+		 */
 		public function Visualizer() : void
 		{
 			_properties = new PropertiesBar();
 			addChild(_properties);
+			setChildIndex(_properties, 1);
 		}
 		
 		/**
@@ -111,13 +120,15 @@ package
 			}
 		}
 		
+		/**
+		 * Black window for cover the background.
+		 */
 		public function BlackWindow() : void {
 			_blackQuad = new Quad(Starling.current.stage.stageWidth, Starling.current.stage.stageHeight, 0x000000);
 			addChild(_blackQuad);
 			_blackQuad.alpha = 0.75;
 			_blackQuad.x = 0;
 			_blackQuad.y = 0;
-			
 		}
 		
 		/**
@@ -137,6 +148,19 @@ package
 			vecInfoFields.push(_info);
 		}
 		
+		public function Handler_MoveDBObject(_evt : TouchEvent) : void 
+		{
+			var _touch:Touch = _evt.getTouch(DragonBonesObject(_evt.currentTarget));
+			if (_touch) {
+				switch(_touch.phase) {
+					case(TouchPhase.MOVED):
+						DragonBonesObject(_evt.currentTarget).x = _properties.width + _touch.globalX;// + (DragonBonesObject(_evt.currentTarget).width * .5);
+						DragonBonesObject(_evt.currentTarget).y = _touch.globalY;// + (DragonBonesObject(_evt.currentTarget).height * .75);
+					break;
+				}
+			}
+		}
+		
 		/**
 		* Create the DragonBones object.
 		* @param	_atlas, StarlingTextureAtlas
@@ -144,12 +168,13 @@ package
 		*/
 		public function Create_DragonBones(_atlas : StarlingTextureAtlas, _skeleton : XML) : void 
 		{
-			_dbObject = new DragonBonesObject(_atlas, _skeleton);
+			_dbObject = new DragonBonesObject(_atlas, _skeleton, Handler_MoveDBObject);
 			addChild(_dbObject);
 			_dbObject.pivotX = _dbObject.width * .5;
 			_dbObject.pivotY = _dbObject.height * .5;
 			_dbObject.x = _properties.width + (Starling.current.stage.stageWidth * .65);// (Starling.current.stage.stageWidth - Starling.current.stage.stageWidth * .35);
 			_dbObject.y = Starling.current.stage.stageHeight * .65;
+			setChildIndex(_dbObject, 0);
 		}
 		
 		/**
@@ -169,11 +194,33 @@ package
 		}
 		
 		/**
+		 * Add Help popup window.
+		 */
+		public function HelpDialogPopUp() : void {
+			BlackWindow();
+			_helpPopUp = new HelpPopUp(400, 200, Delete_Help);
+			addChild(_helpPopUp);
+			_helpPopUp.pivotX = _helpPopUp.width * .5;
+			_helpPopUp.pivotY = _helpPopUp.height * .5;
+			_helpPopUp.x = Starling.current.stage.stageWidth * .5;
+			_helpPopUp.y = Starling.current.stage.stageHeight * .5;
+		}
+		
+		/**
+		 * Remove Help popup window
+		 */
+		private function Delete_Help() : void 
+		{
+			removeChild(_blackQuad);
+			removeChild(_helpPopUp);
+		}
+		
+		/**
 		* Delete object DragonBones from the space/view.
 		*/
 		public function Delete_DragonBones(_delete : Boolean) : void {
 			if (_delete) {
-				if (_dbObject) {
+				if (Has_DragonBonesObject) {
 					removeChild(_dbObject);
 					_dbObject = null;
 					DBDataDriven.Clear_Asset();
@@ -189,10 +236,31 @@ package
 			removeChild(_blackQuad);
 			removeChild(_dialogYesNo);
 		}
+		
+		/**
+		 * Zoom function 
+		 * @param	_zoom
+		 */
+		public function Zoom(_in : Boolean) : void {
+			var _zoomScale:Number = .25;
+			if (Has_DragonBonesObject) {
+				if (_in) 
+				{
+					_dbObject.scaleX += _zoomScale;
+					_dbObject.scaleY += _zoomScale;
+				}
+					else 
+				{
+					_dbObject.scaleX -= _zoomScale;
+					_dbObject.scaleY -= _zoomScale;
+				}
+			}
+		}
+		
 		/**
 		* @return if the object still already exists.
 		*/
-		public function Has_DragonBonesObject() : Boolean 
+		public function get Has_DragonBonesObject() : Boolean 
 		{
 			return (_dbObject) ? true : false;
 		}

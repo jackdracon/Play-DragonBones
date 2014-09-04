@@ -6,13 +6,18 @@ package Contents
 	import dragonBones.Armature;
 	import dragonBones.objects.XMLDataParser;
 	import dragonBones.animation.WorldClock;
+	import flash.geom.Point;
 	import starling.events.EnterFrameEvent;
 	import starling.events.Event;
+	import starling.events.Touch;
 	
 	import starling.textures.Texture;
 	import starling.display.Sprite;
 	
 	import flash.utils.Dictionary;
+	
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	
 	/**
 	 * Object with DragonBones structure.
@@ -34,7 +39,7 @@ package Contents
 		 * @param	_atlas, texture to generate the object.
 		 * @param	_skl, Skeleton data.
 		 */
-		public function DragonBonesObject(_atlas : StarlingTextureAtlas, _skl : XML) : void
+		public function DragonBonesObject(_atlas : StarlingTextureAtlas, _skl : XML, _handlerMove:Function) : void
 		{			
 			factory = new StarlingFactory();
 			var _parsedSkeletonData : SkeletonData = XMLDataParser.parseSkeletonData(_skl);
@@ -55,8 +60,26 @@ package Contents
 				addEventListener(Event.ENTER_FRAME, Update);
 				Play(animationList[0]);
 			}
+			addEventListener(TouchEvent.TOUCH, _handlerMove);
 		}
 		
+		/**
+		 * Touch handler 
+		 * @param	e
+		 */
+		private function OnTouch(e:TouchEvent) : void 
+		{
+			var _touch:Touch = e.getTouch(this);
+			if (_touch) {
+				switch(_touch.phase) {
+					case(TouchPhase.MOVED):
+						var _point:Point = _touch.getLocation(parent);
+						this.x = _point.x + (this.width * .5);
+						this.y = _point.y + (this.height * .75);
+					break;
+				}
+			}
+		}
 		/**
 		* Stop the current animation 
 		*/
@@ -72,10 +95,19 @@ package Contents
 			armature.animation.gotoAndPlay(currentAnimationName);
 		}
 		
+		/**
+		 * Get the name of the current animation.
+		 */
 		public function get CurrentAnimation():String { return currentAnimationName;}
 		
+		/**
+		 * A collection list with animations name.
+		 */
 		public function get AnimationCollection():Vector.<String> {	return animationList;	}
 		
+		/**
+		* Get the armatures list.
+		*/
 		public function get ArmatureList():Vector.<String> { return armatureCollection;	}
 		
 		/**
